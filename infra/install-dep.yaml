@@ -10,3 +10,8 @@
           - boto3
           - botocore
         state: present
+    - name: Install Ansible collections
+      ansible.builtin.command:
+        cmd: ansible-galaxy collection install -r requirements.yaml
+      args:
+        chdir: "{{ playbook_dir }}"
