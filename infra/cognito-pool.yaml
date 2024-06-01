@@ -1,0 +1,64 @@
+---
+- name: Create AWS Cognito User Pool with additional configurations, required attributes, and optional MFA
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Create a new Cognito User Pool with sign-up settings, required attributes, and optional MFA
+      community.aws.cognito_user_pool:
+        state: present
+        name: "YourUserPoolName"
+        username_attributes:
+          - email
+        schema:
+          - name: email
+            attribute_data_type: String
+            required: true
+            mutable: false
+          - name: given_name
+            attribute_data_type: String
+            required: true
+            mutable: true
+          - name: family_name
+            attribute_data_type: String
+            required: true
+            mutable: true
+          - name: birthdate
+            attribute_data_type: Date
+            required: true
+            mutable: true
+          - name: phone_number
+            attribute_data_type: String
+            required: true
+            mutable: true
+          - name: preferred_username
+            attribute_data_type: String
+            required: true
+            mutable: true
+          - name: gender
+            attribute_data_type: String
+            required: true
+            mutable: true
+        password_policy:
+          minimum_length: 8
+          require_lowercase: true
+          require_numbers: true
+          require_symbols: true
+          require_uppercase: true
+        mfa_configuration: OPTIONAL
+        sms_mfa_configuration:
+          sms_authentication_message: "Your authentication code is {####}"
+          sms_verification_message: "Your verification code is {####}"
+        email_verification_message: "Please click the link below to verify your email address. {####}"
+        email_verification_subject: "Your verification link"
+        policies:
+          password_policy:
+            minimum_length: 8
+            require_lowercase: true
+            require_numbers: true
+            require_symbols: true
+            require_uppercase: true
+      register: user_pool
+
+    - name: Output new Cognito User Pool ID
+      debug:
+        msg: "New user pool ID is {{ user_pool.user_pool.Id }}"
