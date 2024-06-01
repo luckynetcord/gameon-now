@@ -1,0 +1,4 @@
+---
+# Main Playbook
+
+- import_playbook: cognito-pool.yaml
