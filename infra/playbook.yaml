@@ -1,4 +1,4 @@
 ---
 # Main Playbook
-
+- import_playbook: install-dep.yaml
 - import_playbook: cognito-pool.yaml

@@ -1,0 +1,12 @@
+# install_dependencies.yml
+---
+- name: Install required Python packages
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Install boto3 and botocore
+      pip:
+        name:
+          - boto3
+          - botocore
+        state: present
