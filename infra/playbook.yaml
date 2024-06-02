@@ -1,4 +1,4 @@
-- name: Install boto3 Python module
+- name: Create AWS Cognito User Pool with additional configurations, required attributes, and optional MFA
   hosts: localhost
   gather_facts: false
   tasks:
@@ -6,11 +6,6 @@
       pip:
         name: boto3
         state: present
-
-- name: Create AWS Cognito User Pool with additional configurations, required attributes, and optional MFA
-  hosts: localhost
-  gather_facts: false
-  tasks:
     - name: Create a new Cognito User Pool with sign-up settings, required attributes, and optional MFA
       boto3:
         service: cognito-idp
