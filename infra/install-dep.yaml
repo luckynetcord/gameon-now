@@ -1,7 +1,7 @@
 # install_dependencies.yml
 ---
 - name: Install required Python packages
-  hosts: localhost
+  hosts: all
   gather_facts: no
   tasks:
     - name: Install boto3 and botocore
@@ -12,6 +12,6 @@
         state: present
     - name: Install Ansible collections
       ansible.builtin.command:
-        cmd: ansible-galaxy collection install -r requirements.yaml
+        cmd: ansible-galaxy collection install community.aws
       args:
         chdir: "{{ playbook_dir }}"
