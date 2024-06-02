@@ -6,6 +6,8 @@
       pip:
         name: boto3
         state: present
+    - name: Debug - List installed Python packages
+      command: "pip list"
     - name: Create a new Cognito User Pool with sign-up settings, required attributes, and optional MFA
       boto3:
         service: cognito-idp
