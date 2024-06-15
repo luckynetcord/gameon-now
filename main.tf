@@ -67,7 +67,5 @@ resource "aws_cognito_user_pool" "example" {
     require_uppercase = true
   }
 
-  # Configure email verification message
-  email_verification_message = "Please click the link below to verify your email address. {####}"
-  email_verification_subject = "Your verification link"
+  auto_verified_attributes = ["email"]
 }
