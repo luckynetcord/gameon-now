@@ -73,7 +73,7 @@ resource "aws_cognito_user_pool" "example" {
   }
 
   schema {
-    name             = "membership_start_date"
+    name             = "membership_start_dt"
     attribute_data_type = "String"
     required         = false
     mutable          = true
