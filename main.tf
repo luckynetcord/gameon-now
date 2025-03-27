@@ -92,6 +92,10 @@ resource "aws_cognito_user_pool" "example" {
 
   # Add MFA configuration
   mfa_configuration = "OPTIONAL"
+
+  software_token_mfa_configuration {
+    enabled = true
+  }
   
   # Add account recovery settings
   account_recovery_setting {
